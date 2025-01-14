@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie World</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #ffe4e1;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffb6c1;
+            padding: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-image: url('https://example.com/barbie-background.jpg');
+            background-size: cover;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3em;
+        }
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .section {
+            width: 300px;
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .section img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #ff69b4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Barbie's World!</h1>
+    </header>
+    <nav>
+        <a href="#play">Play & Learn</a>
+        <a href="#watch">Watch & Enjoy</a>
+        <a href="#create">Create Your Style</a>
+        <a href="#shop">Shop Barbie</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Discover, Play, and Create!</h1>
+        <p>Enter a world full of imagination and fun with Barbie.</p>
+    </div>
+
+    <div class="sections">
+        <div class="section" id="play">
+            <h2>Play & Learn</h2>
+            <img src="https://example.com/play-learn.jpg" alt="Play & Learn">
+            <p>Enjoy games, coloring pages, and educational activities with Barbie.</p>
+        </div>
+        <div class="section" id="watch">
+            <h2>Watch & Enjoy</h2>
+            <img src="https://example.com/watch-enjoy.jpg" alt="Watch & Enjoy">
+            <p>Watch Barbie's adventures and inspiring stories!</p>
+        </div>
+        <div class="section" id="create">
+            <h2>Create Your Style</h2>
+            <img src="https://example.com/create-style.jpg" alt="Create Your Style">
+            <p>Design Barbie's outfits and explore your creativity.</p>
+        </div>
+        <div class="section" id="shop">
+            <h2>Shop Barbie</h2>
+            <img src="https://example.com/shop-barbie.jpg" alt="Shop Barbie">
+            <p>Discover the latest Barbie dolls, accessories, and more!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Barbie World. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

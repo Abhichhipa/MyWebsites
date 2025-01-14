@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #ff9f68;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff7733;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 2rem;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .recipes {
+            margin-top: 2rem;
+        }
+        .recipes h2 {
+            color: #ff7733;
+        }
+        .recipes ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .recipes li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sweet Delights</h1>
+        <p>Your destination for the most delicious cakes and recipes!</p>
+    </header>
+    <nav>
+        <a href="#gallery">Gallery</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="gallery">
+            <h2>Our Cake Gallery</h2>
+            <div class="gallery">
+                <img src="cake1.jpg" alt="Chocolate Cake">
+                <img src="cake2.jpg" alt="Vanilla Cake">
+                <img src="cake3.jpg" alt="Red Velvet Cake">
+                <img src="cake4.jpg" alt="Fruit Cake">
+            </div>
+        </section>
+        <section id="recipes" class="recipes">
+            <h2>Delicious Recipes</h2>
+            <ul>
+                <li>
+                    <h3>Classic Chocolate Cake</h3>
+                    <p>Ingredients: Cocoa, Flour, Sugar, Butter...</p>
+                    <p>Steps: Mix, Bake, Enjoy!</p>
+                </li>
+                <li>
+                    <h3>Vanilla Sponge Cake</h3>
+                    <p>Ingredients: Vanilla extract, Flour, Eggs...</p>
+                    <p>Steps: Mix, Bake, Serve!</p>
+                </li>
+                <li>
+                    <h3>Red Velvet Cake</h3>
+                    <p>Ingredients: Cocoa, Buttermilk, Red color...</p>
+                    <p>Steps: Combine, Bake, Frost!</p>
+                </li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: info@sweetdelights.com</p>
+            <p>Phone: +123-456-7890</p>
+        </section>
+    </div>
+</body>
+</html>
