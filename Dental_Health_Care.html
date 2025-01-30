@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Care & Advice</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0066cc;
+            padding: 10px 0;
+            color: white;
+            text-align: center;
+        }
+        .header-info {
+            margin-bottom: 10px;
+        }
+        .header-info span {
+            font-weight: bold;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #hero {
+            background: url('dental-hero.jpg') no-repeat center center/cover;
+            height: 300px;
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #hero h1 {
+            font-size: 2.5em;
+        }
+        button {
+            background-color: #ff9900;
+            padding: 10px 20px;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .service {
+            margin: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            display: inline-block;
+            width: 30%;
+            box-sizing: border-box;
+        }
+        form {
+            width: 60%;
+            margin: 0 auto;
+        }
+        form label, form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        form button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-info">
+            <span id="doctor-name-header">Dr. Pankaj Dhnopia</span> - <span id="clinic-name-header">[Krishna Clinic]</span>
+            <br>
+            <span id="clinic-address">Bijaynagar</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Dental Services</a></li>
+                <li><a href="#">Advice & Tips</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Your Guide to a Healthy Smile</h1>
+            <button><a href="#appointment">Book an Appointment</a></button>
+        </div>
+    </section>
+
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to <span id="clinic-name">[Clinic Name]</span>. We offer comprehensive dental services with a focus on patient care and comfort.</p>
+        <p>Our lead dentist: <span id="doctor-name">Dr. John Doe</span></p>
+        <div>
+            <label for="doctor-input">Change Doctor's Name:</label>
+            <input type="text" id="doctor-input" placeholder="Enter new doctor's name">
+            <button onclick="updateDoctorName()">Update Doctor's Name</button>
+        </div>
+        <div>
+            <label for="clinic-input">Change Clinic Name:</label>
+            <input type="text" id="clinic-input" placeholder="Enter new clinic name">
+            <button onclick="updateClinicName()">Update Clinic Name</button>
+        </div>
+        <div>
+            <label for="address-input">Change Clinic Address:</label>
+            <input type="text" id="address-input" placeholder="Enter new clinic address">
+            <button onclick="updateClinicAddress()">Update Clinic Address</button>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Dental Services</h2>
+        <div class="service">
+            <h3>General Dentistry</h3>
+            <p>Preventive care, cleanings, and fillings.</p>
+        </div>
+        <div class="service">
+            <h3>Cosmetic Dentistry</h3>
+            <p>Whitening, veneers, and crowns.</p>
+        </div>
+        <div class="service">
+            <h3>Orthodontics</h3>
+            <p>Braces and Invisalign.</p>
+        </div>
+    </section>
+
+    <section id="advice">
+        <h2>Dental Tips & Advice</h2>
+        <p>Learn how to maintain a healthy smile with our expert tips.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Follow us on social media:</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        function updateDoctorName() {
+            const doctorInput = document.getElementById('doctor-input').value;
+            const doctorName = document.getElementById('doctor-name');
+            const doctorNameHeader = document.getElementById('doctor-name-header');
+            if (doctorInput.trim() !== '') {
+                doctorName.textContent = doctorInput;
+                doctorNameHeader.textContent = doctorInput;
+            }
+        }
+
+        function updateClinicName() {
+            const clinicInput = document.getElementById('clinic-input').value;
+            const clinicName = document.getElementById('clinic-name');
+            const clinicNameHeader = document.getElementById('clinic-name-header');
+            if (clinicInput.trim() !== '') {
+                clinicName.textContent = clinicInput;
+                clinicNameHeader.textContent = clinicInput;
+            }
+        }
+
+        function updateClinicAddress() {
+            const addressInput = document.getElementById('address-input').value;
+            const clinicAddress = document.getElementById('clinic-address');
+            if (addressInput.trim() !== '') {
+                clinicAddress.textContent = addressInput;
+            }
+        }
+    </script>
+</body>
+</html>

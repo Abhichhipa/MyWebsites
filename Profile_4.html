@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Chhipa - HPC Engineer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #0073e6;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #005bb5;
+            color: white;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: #005bb5;
+        }
+        footer {
+            text-align: center;
+            background: #f4f4f4;
+            padding: 1rem 0;
+            margin-top: 20px;
+        }
+        .upload-section {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .uploaded-content {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination button {
+            background: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .pagination button:hover {
+            background: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Abhishek Chhipa</h1>
+        <p>HPC Engineer | Passionate Technologist</p>
+    </header>
+    
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#contact">Contact</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#education">Education</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Passionate to learn new technologies and excel in innovative applications. I seek a challenging position to continuously learn, create, and contribute to organizational goals effectively using my technological skills.</p>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <h2>Upload Section</h2>
+        <div>
+            <h3>Upload Images</h3>
+            <input type="file" id="imageInput" accept="image/*" multiple>
+        </div>
+        <div>
+            <h3>Upload Documents</h3>
+            <input type="file" id="fileInput" accept=".pdf, .doc, .docx, .txt" multiple>
+        </div>
+        <div class="uploaded-content" id="uploadedContent"></div>
+    </section>
+
+    <!-- Pagination Section -->
+    <div class="pagination">
+        <button id="prevPage" disabled>Previous</button>
+        <button id="nextPage">Next</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Abhishek Chhipa | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const fileInput = document.getElementById('fileInput');
+        const uploadedContent = document.getElementById('uploadedContent');
+        const prevPage = document.getElementById('prevPage');
+        const nextPage = document.getElementById('nextPage');
+
+        let currentPage = 1;
+        const itemsPerPage = 5;
+        let uploadedItems = [];
+
+        // Handle Image Upload
+        imageInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            for (const file of files) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.className = 'uploaded-image';
+                uploadedItems.push(img);
+            }
+            renderPage();
+        });
+
+        // Handle File Upload
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            for (const file of files) {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(file);
+                link.textContent = `View Document: ${file.name}`;
+                link.target = '_blank';
+                uploadedItems.push(link);
+            }
+            renderPage();
+        });
+
+        // Render items for the current page
+        function renderPage() {
+            uploadedContent.innerHTML = ''; // Clear previous content
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const itemsToShow = uploadedItems.slice(start, end);
+
+            itemsToShow.forEach(item => uploadedContent.appendChild(item));
+
+            // Handle pagination buttons
+            prevPage.disabled = currentPage === 1;
+            nextPage.disabled = end >= uploadedItems.length;
+        }
+
+        // Pagination controls
+        prevPage.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage();
+            }
+        });
+
+        nextPage.addEventListener('click', () => {
+            const totalPages = Math.ceil(uploadedItems.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage();
+            }
+        });
+    </script>
+</body>
+</html>

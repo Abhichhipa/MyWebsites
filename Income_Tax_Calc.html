@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator for Learners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+        .explanation {
+            background-color: #e7f7e7;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Income Tax Calculator for Learners</h1>
+        <p>Enter your annual income to calculate your tax based on the Indian Income Tax Slabs.</p>
+        
+        <form id="taxForm">
+            <label for="income">Enter Your Annual Income (₹):</label>
+            <input type="number" id="income" placeholder="Enter your income" required>
+            <button type="button" onclick="calculateTax()">Calculate Tax</button>
+        </form>
+        
+        <div class="result" id="result"></div>
+        
+        <table id="taxDetails" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Slab Range (₹)</th>
+                    <th>Taxable Income (₹)</th>
+                    <th>Tax Rate (%)</th>
+                    <th>Tax (₹)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="explanation" id="taxExplanation" style="display: none;">
+            <h3>How Tax is Calculated:</h3>
+            <p>Income tax is calculated based on different tax slabs for various income ranges. The rate of tax increases as your income rises. Below are the tax slabs for individuals below 60 years of age:</p>
+            <ul>
+                <li><strong>Up to ₹2,50,000:</strong> No tax.</li>
+                <li><strong>₹2,50,001 to ₹5,00,000:</strong> 5% tax on income above ₹2,50,000.</li>
+                <li><strong>₹5,00,001 to ₹10,00,000:</strong> 20% tax on income above ₹5,00,000.</li>
+                <li><strong>Above ₹10,00,000:</strong> 30% tax on income above ₹10,00,000.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            const income = parseFloat(document.getElementById("income").value);
+            const resultElement = document.getElementById("result");
+            const taxTable = document.getElementById("taxDetails");
+            const tbody = taxTable.querySelector("tbody");
+            const explanation = document.getElementById("taxExplanation");
+
+            if (isNaN(income) || income < 0) {
+                resultElement.textContent = "Please enter a valid income.";
+                taxTable.style.display = "none";
+                explanation.style.display = "none";
+                return;
+            }
+
+            // Tax slab definition
+            const taxSlabs = [
+                { lowerLimit: 0, upperLimit: 250000, rate: 0.0 },
+                { lowerLimit: 250000, upperLimit: 500000, rate: 0.05 },
+                { lowerLimit: 500000, upperLimit: 1000000, rate: 0.20 },
+                { lowerLimit: 1000000, upperLimit: Infinity, rate: 0.30 },
+            ];
+
+            let tax = 0;
+            let details = [];
+
+            // Clear previous table data
+            tbody.innerHTML = "";
+
+            // Calculate tax for each slab
+            for (const slab of taxSlabs) {
+                if (income > slab.lowerLimit) {
+                    const taxableIncome = Math.min(income, slab.upperLimit) - slab.lowerLimit;
+                    const taxForSlab = taxableIncome * slab.rate;
+                    tax += taxForSlab;
+
+                    details.push({
+                        range: ${slab.lowerLimit} - ${slab.upperLimit === Infinity ? "Above" : slab.upperLimit},
+                        taxableIncome: taxableIncome.toFixed(2),
+                        rate: (slab.rate * 100).toFixed(2),
+                        tax: taxForSlab.toFixed(2),
+                    });
+                }
+            }
+
+            // Update the result
+            resultElement.textContent = Total Income Tax Payable: ₹${tax.toFixed(2)};
+
+            // Populate the table with details
+            details.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${row.range}</td>
+                    <td>${row.taxableIncome}</td>
+                    <td>${row.rate}</td>
+                    <td>${row.tax}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Show the table and explanation
+            taxTable.style.display = "table";
+            explanation.style.display = "block";
+        }
+    </script>
+</body>
+</html>
